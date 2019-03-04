@@ -18,7 +18,7 @@ namespace Presentation.Multitenant.Web.Features.Stocks
 
         public async Task<StockListViewModel> Handle(StocksRequest request)
         {
-            throw new NotImplementedException();
+            return new StockListViewModel();
         }
     }
 
