@@ -17,7 +17,11 @@ header h2{
 }
 
 img{
+    background: #fff;
     width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .price {
@@ -32,13 +36,14 @@ img{
     margin-bottom: 15px;
 }
 
-.stock-item{
+.stock-item {
     border-bottom: 2px dotted #666;
-    padding: 15px 0 15px 0;
+    padding: 25px 0 25px 0;
 }
 
-.stock-item h1{
-    font-size: 30px;
-    font-weight: 400;
-    margin-bottom: 15px;
-}
+    .stock-item h1 {
+        font-size: 30px;
+        font-weight: 400;
+        margin-bottom: 15px;
+        color: #007CC2;
+    }

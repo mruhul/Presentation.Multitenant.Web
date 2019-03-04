@@ -21,7 +21,7 @@
 
 
   <ItemGroup>
-    <Folder Include="Features\Stocks\Providers\" />
+    <Folder Include="Features\Stocks\Providers\Carsales\" />
   </ItemGroup>
 
 </Project>

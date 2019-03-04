@@ -30,7 +30,7 @@ namespace Presentation.Multitenant.Web.Features.Stocks
                                 || x.SupportedTenants.Length == 0
                                 || x.SupportedTenants.Any(t => t.IsSame(tenant)));
 
-            if (provider == null) return new StockListViewModel();
+            if (provider == null) return null;
 
             return await provider.Get(request);
         }
