@@ -1,7 +1,10 @@
-﻿using Ingress.Core.Attributes;
+﻿using Bolt.Common.Extensions;
+using Ingress.Core.Attributes;
+using Ingress.Tenancy.Abstracts;
 using Presentation.Multitenant.Web.Features.Stocks.Proxies;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Presentation.Multitenant.Web.Features.Stocks
@@ -10,15 +13,26 @@ namespace Presentation.Multitenant.Web.Features.Stocks
     public class StocksRequestHandler
     {
         private readonly IEnumerable<IStockListViewModelProvider> _providers;
+        private readonly ITenantConfig _tenantConfig;
 
-        public StocksRequestHandler(IEnumerable<IStockListViewModelProvider> providers)
+        public StocksRequestHandler(IEnumerable<IStockListViewModelProvider> providers, ITenantConfig tenantConfig)
         {
             _providers = providers;
+            _tenantConfig = tenantConfig;
         }
 
         public async Task<StockListViewModel> Handle(StocksRequest request)
         {
-            throw new NotImplementedException();
+            var tenant = _tenantConfig.Current.Name;
+
+            var provider = _providers.FirstOrDefault(x => 
+                                x.SupportedTenants == null 
+                                || x.SupportedTenants.Length == 0
+                                || x.SupportedTenants.Any(t => t.IsSame(tenant)));
+
+            if (provider == null) return null;
+
+            return await provider.Get(request);
         }
     }
 

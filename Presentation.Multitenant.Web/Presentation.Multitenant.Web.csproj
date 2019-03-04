@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -11,7 +11,9 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Bolt.Common.Extensions" Version="2.1.0" />
     <PackageReference Include="Ingress.Ioc.Scanner" Version="1.0.1" />
+    <PackageReference Include="Ingress.Tenancy.Ioc" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>

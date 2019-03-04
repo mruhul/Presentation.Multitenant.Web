@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Ingress.Tenancy.Ioc;
 
 namespace Presentation.Multitenant.Web
 {
@@ -24,6 +25,7 @@ namespace Presentation.Multitenant.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMultiTenant(Configuration);
             services.AutoBind(typeof(Startup).Assembly);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
