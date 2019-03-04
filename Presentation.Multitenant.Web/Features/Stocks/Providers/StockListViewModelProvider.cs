@@ -12,11 +12,15 @@ namespace Presentation.Multitenant.Web.Features.Stocks.Providers
     {
         private readonly StocksApiProxy _proxy;
         private readonly ITenantConfig<StaticDataSettings> _staticDataSettings;
+        private readonly ITenantConfig<ListingConfigSettings> _config;
 
-        public StockListViewModelProvider(StocksApiProxy proxy, ITenantConfig<StaticDataSettings> staticDataSettings)
+        public StockListViewModelProvider(StocksApiProxy proxy, 
+            ITenantConfig<StaticDataSettings> staticDataSettings,
+            ITenantConfig<ListingConfigSettings> config)
         {
             _proxy = proxy;
             _staticDataSettings = staticDataSettings;
+            _config = config;
         }
 
         public async Task<StockListViewModel> Get(StocksRequest request)
@@ -25,11 +29,13 @@ namespace Presentation.Multitenant.Web.Features.Stocks.Providers
 
             var result = new StockListViewModel();
 
+            var config = _config.Current;
+
             result.Items = data?.Select(d => new StockViewModel {
                 Odometer = $"{d.Odometer:N0} km",
-                PhotoUrl = $"{d.PhotoUrl}?pxc_method=crop&pxc_size=900%2c600",
+                PhotoUrl = $"{config.ImageBaseUrl}/{d.PhotoUrl.TrimStart('/')}?pxc_method=crop&pxc_size=900%2c600",
                 Price = $"{d.Price:C0}",
-                DetailsUrl = d.DetailsUrl,
+                DetailsUrl = $"{config.DetailsBaseUrl}/{d.DetailsUrl.TrimStart('/')}",
                 Title = d.Title
             });
 

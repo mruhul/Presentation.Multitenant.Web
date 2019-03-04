@@ -17,12 +17,12 @@
                 <h1>@item.Title</h1>
                 <div class="row">
                     <div class="col-6">
-                        <img src="https://carsales.pxcrush.net/carsales/@item.PhotoUrl" />
+                        <img src="@item.PhotoUrl" />
                     </div>
                     <div class="col-6">
                         <span class="keydetails">@lang["Price"]: @item.Price</span>
                         <span class="keydetails">@lang["Odometer"]: @item.Odometer</span>
-                        <a href="/enquire" class="btn btn-primary">@lang["View Details"]</a>
+                        <a href="@item.DetailsUrl" class="btn btn-primary">@lang["View Details"]</a>
                     </div>
                 </div>
             </div>
