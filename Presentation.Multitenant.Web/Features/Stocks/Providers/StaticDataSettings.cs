@@ -40,7 +40,7 @@ namespace Presentation.Multitenant.Web.Features.Stocks.Providers
                     new StaticDataSettings
                     {
                         Heading = "Soloautos",
-                        Slogan = "Soloautos | Newly Used Cars and New Vehicles - soloautos.mx"
+                        Slogan = "Contáctanos | Autos Usados Seminuevos y Nuevos en México"
                     }
                 }
             };
