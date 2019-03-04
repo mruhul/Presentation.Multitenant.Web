@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Ingress.Tenancy.Ioc;
+using Ingress.Tenancy.Localization;
 
 namespace Presentation.Multitenant.Web
 {
@@ -27,12 +28,15 @@ namespace Presentation.Multitenant.Web
         {
             services.AddMultiTenant(Configuration);
             services.AutoBind(typeof(Startup).Assembly);
+            services.AddLocalization();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseTenantBasedRequestLocalization();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
